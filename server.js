@@ -4,7 +4,7 @@
 // render the exact invoice HTML → PDF via Chromium, then email it through
 // Resend from invoice@<domain>. No secrets ever reach the browser.
 import express from "express";
-import puppeteer from "puppeteer-core";
+import puppeteer from "puppeteer";
 import { buildInvoiceHtml } from "./invoice.js";
 
 const {
@@ -14,7 +14,6 @@ const {
   ALLOWED_ORIGIN = "*",
   FROM_EMAIL = "invoice@rifatshakhawathossain.com",
   FROM_NAME = "RSH Productions",
-  PUPPETEER_EXECUTABLE_PATH = "/usr/bin/chromium",
   PORT = 3000,
 } = process.env;
 
@@ -40,9 +39,8 @@ async function getBrowser() {
     if (b && b.connected) return b;
   }
   browserPromise = puppeteer.launch({
-    executablePath: PUPPETEER_EXECUTABLE_PATH,
     headless: "new",
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--no-zygote", "--single-process", "--font-render-hinting=none"],
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--font-render-hinting=none"],
   });
   return browserPromise;
 }

@@ -7,6 +7,6 @@
   "engines": { "node": ">=20" },
   "dependencies": {
     "express": "^4.19.2",
-    "puppeteer-core": "^23.11.1"
+    "puppeteer": "23.11.1"
   }
 }
