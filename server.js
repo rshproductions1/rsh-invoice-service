@@ -42,7 +42,7 @@ async function getBrowser() {
   browserPromise = puppeteer.launch({
     executablePath: PUPPETEER_EXECUTABLE_PATH,
     headless: "new",
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--font-render-hinting=none"],
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu", "--no-zygote", "--single-process", "--font-render-hinting=none"],
   });
   return browserPromise;
 }
